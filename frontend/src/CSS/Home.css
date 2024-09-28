@@ -1,0 +1,116 @@
+/* Home.css */
+
+/* Style for the sidebar */
+.sidebar {
+  position: fixed;
+  width: 15rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  height: 100%;
+}
+
+/* Style for the filter section */
+.filter-section h4,
+.filter-section h5 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Style for the price filter section */
+.price-filter {
+  margin-top: 2rem;
+}
+
+/* Style for the reset filter button */
+.reset-button {
+  margin-top: 1rem;
+}
+
+/* Style for the product cards */
+.product-card {
+  width: 18rem;
+  margin: 1rem;
+}
+
+.product-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-card .card-body {
+  padding: 1rem;
+}
+
+.product-card .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.product-card .card-text {
+  margin-bottom: 1rem;
+}
+
+.product-card button {
+  margin-top: 0.5rem;
+}
+
+/* Carousel customization */
+.custom-carousel .carousel-item img {
+  height: 400px;
+  object-fit: cover;
+}
+
+/* Pagination style */
+.pagination-container {
+  margin-top: 2rem;
+}
+
+/* Responsive Design */
+
+/* For small devices (tablets, 768px and below) */
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+    height: auto;
+  }
+
+  .product-card {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .custom-carousel .carousel-item img {
+    height: 300px;
+  }
+}
+
+/* For extra small devices (phones, 576px and below) */
+@media (max-width: 576px) {
+  .product-card {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .custom-carousel .carousel-item img {
+    height: 200px;
+  }
+
+  .sidebar {
+    padding: 0.5rem;
+  }
+
+  .filter-section h4,
+  .filter-section h5 {
+    font-size: 1rem;
+  }
+
+  .reset-button {
+    margin-top: 0.5rem;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+  }
+}

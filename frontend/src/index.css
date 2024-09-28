@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  font-size: 1rem;
+  text-transform: uppercase;
+  line-height: 20px;
+}
+.active {
+  border-bottom: 2px solid rgb(182, 131, 131);
+}
+.footer {
+  color: white;
+  padding: 25px;
+  background-color: black;
+  text-align: center;
+}
+
+.footer a {
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+}
+
+/* contact */
+
+.contact .right {
+  height: 80vh;
+  background-image: url(./images/contactus.jpeg);
+  background-repeat: no-repeat;
+  background-size: 660px 562px;
+  object-fit: cover;
+  box-shadow: -10px 5px 15px 5px rgb(177, 175, 175);
+}
+
+/* About */
+.about .right {
+  height: 80vh;
+  background-image: url(./images/about.jpeg);
+  background-repeat: no-repeat;
+  background-size: 660px 562px;
+  object-fit: cover;
+  box-shadow: -10px 5px 15px 5px rgb(177, 175, 175);
+  text-align: center;
+}
+
+main {
+  background-image: linear-gradient(rgb(243, 244, 230), rgb(237, 224, 239));
+}
+
+/* register login */
+
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+}
+
+.registration-Form {
+  width: 32%;
+  background-color: rgb(218, 211, 166);
+  box-shadow: 0 12px 15px 8px rgb(205, 205, 205);
+}
+
+.login-Form {
+  width: 25%;
+  background-color: rgb(218, 211, 166);
+  box-shadow: 0 12px 15px 8px rgb(205, 205, 205);
+}
+
+.product-link {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+/* home carousel */
+.custom-carousel .carousel-item {
+  height: 300px;
+}
+
+.custom-carousel .carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
