@@ -47,7 +47,7 @@ const CartPage = () => {
                         {cart.map((p, index) => (
                             <div key={index} className='row m-2 card flex-row'>
                                 <div className='col-md-4'>
-                                    <img className='card-img' src={`http://localhost:8000/api/product/product-photo/${p._id}`} alt={p.name} style={{ borderRadius: '1rem' }} />
+                                    <img className='card-img' src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${p._id}`} alt={p.name} style={{ borderRadius: '1rem' }} />
                                 </div >
                                 <div className='col-md-8'>
                                     <h4>{p.name}</h4>
