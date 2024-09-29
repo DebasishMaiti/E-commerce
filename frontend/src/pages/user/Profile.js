@@ -25,7 +25,7 @@ const Profile = () => {
     const dataSendToApi = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.put("http://localhost:8000/api/auth/profile", formData, {
+            const response = await axios.put("https://e-commerce-9m1c.vercel.app/api/auth/profile", formData, {
                 headers: {
                     'Authorization': auth.token
                 }

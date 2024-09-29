@@ -16,7 +16,7 @@ const Products = () => {
 
     const getAllProducts = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/product/get-product/?page=${page}&q=${value}`);
+            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/get-product/?page=${page}&q=${value}`);
             setProducts(response.data.product);
             setTotalRecords(response.data.totalRecord);
         } catch (error) {
@@ -77,9 +77,9 @@ const Products = () => {
                     </form>
                     <div className='d-flex flex-wrap'>
                         {products.map((p, index) => (
-                            <Link to={`http://localhost:3000/dashboard/admin/products/${p.slug}`} className='product-link'>
+                            <Link to={`https://e-commerce-9m1c.vercel.app/dashboard/admin/products/${p.slug}`} className='product-link'>
                                 <div className="card m-2" style={{ width: '15rem' }} key={index}>
-                                    <img className="card-img-top" src={`http://localhost:8000/api/product/product-photo/${p._id}`} alt={p.name} />
+                                    <img className="card-img-top" src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${p._id}`} alt={p.name} />
                                     <div className="card-body">
                                         <h5 className="card-title">{p.name}</h5>
                                         <p className="card-text">{p.description}</p>

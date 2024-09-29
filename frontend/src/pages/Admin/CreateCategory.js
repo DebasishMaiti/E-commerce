@@ -30,7 +30,7 @@ const CreateCategory = () => {
     // Fetch all categories
     const getAllCategory = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/api/category/get-category");
+            const response = await axios.get("https://e-commerce-9m1c.vercel.app/api/category/get-category");
             if (response) {
                 setCategories(response.data.category);
             }
@@ -48,7 +48,7 @@ const CreateCategory = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8000/api/category/create-category', { name }, {
+            const response = await axios.post('https://e-commerce-9m1c.vercel.app/api/category/create-category', { name }, {
                 headers: {
                     'Authorization': auth.token
                 }
@@ -68,7 +68,7 @@ const CreateCategory = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.put(`http://localhost:8000/api/category/update-category/${selected._id}`, { name: updatedName }, {
+            const { data } = await axios.put(`https://e-commerce-9m1c.vercel.app/api/category/update-category/${selected._id}`, { name: updatedName }, {
                 headers: {
                     'Authorization': auth.token
                 }
@@ -87,7 +87,7 @@ const CreateCategory = () => {
     // Delete category
     const DeleteCategory = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:8000/api/category/delete-category/${id}`, {
+            const response = await axios.delete(`https://e-commerce-9m1c.vercel.app/api/category/delete-category/${id}`, {
                 headers: {
                     'Authorization': auth.token
                 }
@@ -106,7 +106,7 @@ const CreateCategory = () => {
     const handleSubcategorySubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post(`http://localhost:8000/api/subcategory/create-subcategory/${categoryId}`, { name: subcategoryName });
+            const { data } = await axios.post(`https://e-commerce-9m1c.vercel.app/api/subcategory/create-subcategory/${categoryId}`, { name: subcategoryName });
             toast.success(data.message);
             setSubcategoryName('');
         } catch (error) {
@@ -118,7 +118,7 @@ const CreateCategory = () => {
     // Fetch subcategories
     const GetSubCategory = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/subcategory/get-subcategory/${parentCategory}`);
+            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/subcategory/get-subcategory/${parentCategory}`);
             setSubcategories(response.data.subcategories);
         } catch (error) {
             console.log(error);
@@ -143,7 +143,7 @@ const CreateCategory = () => {
     const handleSubcategoryUpdate = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.put(`http://localhost:8000/api/subcategory/update-subcategory/${selectedSubcategory._id}`, {
+            const { data } = await axios.put(`https://e-commerce-9m1c.vercel.app/api/subcategory/update-subcategory/${selectedSubcategory._id}`, {
                 name: updatedSubcategoryName,
             }, {
                 headers: {
@@ -163,7 +163,7 @@ const CreateCategory = () => {
     // Delete subcategory
     const DeleteSubCategory = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:8000/api/subcategory/delete-subcategory/${id}`);
+            const response = await axios.delete(`https://e-commerce-9m1c.vercel.app/api/subcategory/delete-subcategory/${id}`);
             toast.success('Subcategory Deleted');
             GetSubCategory();
             console.log(response);

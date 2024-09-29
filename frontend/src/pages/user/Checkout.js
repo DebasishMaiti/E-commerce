@@ -42,7 +42,7 @@ const Checkout = () => {
     const handlePostShiping = async (orderId) => {
         try {
             const response = await axios.post(
-                `http://localhost:8000/api/shiping/add-shiping/${orderId}/${auth.user._id}`,
+                `https://e-commerce-9m1c.vercel.app/api/shiping/add-shiping/${orderId}/${auth.user._id}`,
                 formData
             );
             console.log(response);
@@ -60,7 +60,7 @@ const Checkout = () => {
     const getToken = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:8000/api/product/braintree/token'
+                'https://e-commerce-9m1c.vercel.app/api/product/braintree/token'
             );
             setClientToken(response.data.clientToken);
         } catch (error) {
@@ -77,7 +77,7 @@ const Checkout = () => {
             setLoading(true);
             const { nonce } = await instance.requestPaymentMethod();
             const response = await axios.post(
-                `http://localhost:8000/api/product/braintree/payment/${auth.user._id}`,
+                `https://e-commerce-9m1c.vercel.app/api/product/braintree/payment/${auth.user._id}`,
                 {
                     nonce,
                     cart,
@@ -102,7 +102,7 @@ const Checkout = () => {
             setLoading(true);
             const { nonce } = await instance.requestPaymentMethod();
             const response = await axios.post(
-                `http://localhost:8000/api/product/braintree/payments/${guest}`,
+                `https://e-commerce-9m1c.vercel.app/api/product/braintree/payments/${guest}`,
                 {
                     nonce,
                     cart,
@@ -125,7 +125,7 @@ const Checkout = () => {
     const getShipings = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:8000/api/shiping/get-user-shipings/${auth.user._id}`
+                `https://e-commerce-9m1c.vercel.app/api/shiping/get-user-shipings/${auth.user._id}`
             );
             setUserAdd(response.data.shiping);
         } catch (error) {

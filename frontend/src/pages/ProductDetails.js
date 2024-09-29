@@ -10,7 +10,7 @@ const ProductDetails = () => {
 
     const getProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/product/get-product/${params.slug}`);
+            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/get-product/${params.slug}`);
             setProduct(response.data.product);
             getSimilerProduct(response.data.product._id, response.data.product.category._id);
         } catch (error) {
@@ -20,7 +20,7 @@ const ProductDetails = () => {
 
     const getSimilerProduct = async (pid, cid) => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/product/similer-product/${pid}/${cid}`);
+            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/similer-product/${pid}/${cid}`);
             setRelatedProduct(response.data.product);
         } catch (error) {
             console.log(error);
@@ -39,7 +39,7 @@ const ProductDetails = () => {
                         <img
                             className="card-img-top"
                             height='450'
-                            src={`http://localhost:8000/api/product/product-photo/${product._id}`}
+                            src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${product._id}`}
                             alt={product.name}
                         />
                     ) : (
@@ -65,7 +65,7 @@ const ProductDetails = () => {
                             <div className="card m-2 mx-3" style={{ width: '15rem', borderRadius: '1rem' }} key={index}>
                                 <img
                                     className="card-img-top"
-                                    src={`http://localhost:8000/api/product/product-photo/${p._id}`}
+                                    src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${p._id}`}
                                     alt={p.name}
                                     style={{ borderRadius: '1rem' }}
                                 />

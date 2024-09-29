@@ -27,7 +27,7 @@ const ForgotPassword = () => {
     const dataSendToApi = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:8000/api/auth/forgot-password", formData);
+            const response = await axios.post("https://e-commerce-9m1c.vercel.app/api/auth/forgot-password", formData);
             if (response.data) {
                 toast.success(response.data.message);
                 setTimeout(() => {

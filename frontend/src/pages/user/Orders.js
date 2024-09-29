@@ -11,7 +11,7 @@ const Orders = () => {
 
     const getOrders = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:8000/api/auth/userOrders/${auth.user._id}`, {
+            const { data } = await axios.get(`https://e-commerce-9m1c.vercel.app/api/auth/userOrders/${auth.user._id}`, {
                 headers: {
                     'Authorization': auth.token
                 }
@@ -61,7 +61,7 @@ const Orders = () => {
                                                 <tr key={product._id}>
                                                     <td>{product.name}</td>
                                                     <td>
-                                                        <img src={`http://localhost:8000/api/product/product-photo/${product._id}`} alt={product.name} style={{ width: '100px' }} />
+                                                        <img src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${product._id}`} alt={product.name} style={{ width: '100px' }} />
                                                     </td>
                                                     <td>{product.description}</td>
                                                     <td>${product.price}</td>

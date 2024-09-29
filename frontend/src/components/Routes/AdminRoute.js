@@ -10,7 +10,7 @@ const AdminRoute = () => {
     const [ok, setOk] = useState(false);
     useEffect(() => {
         const Check = async () => {
-            const response = await axios.get('http://localhost:8000/api/auth/admin-auth', {
+            const response = await axios.get('https://e-commerce-9m1c.vercel.app/api/auth/admin-auth', {
                 headers: {
                     'Authorization': auth.token
                 }
