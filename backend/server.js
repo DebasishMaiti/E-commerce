@@ -16,7 +16,7 @@ mongoose.connect("mongodb+srv://maitidebasish2001:debasish@cluster0.ff0ee.mongod
 
 
 server.use('/api', allRoutes)
-app.use((req, res) => {
+server.use((req, res) => {
     res.status(404).json({ error: 'Route not found' });
 });
 
