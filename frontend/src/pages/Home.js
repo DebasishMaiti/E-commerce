@@ -27,7 +27,7 @@ const Home = () => {
 
     const getBestSellingProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/product/best-selling-product`);
+            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/best-selling-product`);
             setBestSellingProducts(response.data);
             console.log(response.data)
         } catch (error) {
@@ -50,7 +50,7 @@ const Home = () => {
 
     const getAllProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/product/get-product/?page=${page}&q=${value}`);
+            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/get-product/?page=${page}&q=${value}`);
             setProducts(response.data.product);
             setTotalRecords(response.data.totalRecord);
         } catch (error) {
@@ -60,7 +60,7 @@ const Home = () => {
 
     const getFilteredProduct = async () => {
         try {
-            const response = await axios.post(`http://localhost:8000/api/product/filter-product/?page=${page}`, { checked, radio, subcategory: checkedSubcategories });
+            const response = await axios.post(`https://e-commerce-9m1c.vercel.app/api/product/filter-product/?page=${page}`, { checked, radio, subcategory: checkedSubcategories });
             setProducts(response.data.product);
             setTotalRecords(response.data.totalRecord);
         } catch (error) {
@@ -70,7 +70,7 @@ const Home = () => {
 
     const fetchPriceRanges = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/product/get-price-ranges');
+            const response = await axios.get('https://e-commerce-9m1c.vercel.app/api/product/get-price-ranges');
             setPriceRanges(response.data.priceRanges);
         } catch (error) {
             console.log(error);
@@ -126,7 +126,7 @@ const Home = () => {
 
     const GetSubCategory = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:8000/api/subcategory/get-subcategory/${parentCategory}`);
+            const { data } = await axios.get(`https://e-commerce-9m1c.vercel.app/api/subcategory/get-subcategory/${parentCategory}`);
             if (data) {
                 setSubcategories(data.subcategories);
             }
@@ -284,7 +284,7 @@ const Home = () => {
                         <div className="d-flex flex-wrap justify-content-start mt-4">
                             {products.map((p, index) => (
                                 <div className="card m-2" style={{ width: '18rem', border: '1px solid #ddd', borderRadius: '4px', overflow: 'hidden' }} key={index}>
-                                    <img src={`http://localhost:8000/api/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} style={{ height: '200px', objectFit: 'cover' }} />
+                                    <img src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} style={{ height: '200px', objectFit: 'cover' }} />
                                     <div className="card-body">
                                         <h5 className="card-title">{p.name}</h5>
                                         <p className="card-text">{`${p.description.substring(0, 20)}...`}</p>
@@ -306,7 +306,7 @@ const Home = () => {
                             <div className="d-flex flex-wrap justify-content-start mt-4">
                                 {bestSellingProducts.map((p, index) => (
                                     <div className="card m-2" style={{ width: '18rem', border: '1px solid #ddd', borderRadius: '4px', overflow: 'hidden' }} key={index}>
-                                        <img src={`http://localhost:8000/api/product/product-photo/${p._id._id}`} className="card-img-top" alt={p.name} style={{ height: '200px', objectFit: 'cover' }} />
+                                        <img src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${p._id._id}`} className="card-img-top" alt={p.name} style={{ height: '200px', objectFit: 'cover' }} />
                                         <div className="card-body">
                                             <h5 className="card-title">{p._id.name}</h5>
                                             <p className="card-text">{`${p._id.description.substring(0, 20)}...`}</p>
