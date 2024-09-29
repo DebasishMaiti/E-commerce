@@ -1,12 +1,7 @@
 {
   "version": 2,
   "name": "E-commerce-api",
-  "builds": [
-    {
-      "src": "api/*.js",
-      "use": "@vercel/node"
-    }
-  ],
+ 
   "routes": [
     {
       "src": "/(.*)",
