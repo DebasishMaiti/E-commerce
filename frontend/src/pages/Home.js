@@ -39,7 +39,7 @@ const Home = () => {
     }, [])
     const getAllCategory = async () => {
         try {
-            const response = await axios.get("http://https://e-commerce-9m1c.vercel.app/api/category/get-category/");
+            const response = await axios.get("https://https://e-commerce-9m1c.vercel.app/api/category/get-category/");
             if (response) {
                 setCategories(response.data.category);
             }
