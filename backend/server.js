@@ -9,7 +9,7 @@ dotenv.config();
 const server = express();
 server.use(express.json({ limit: '50mb' }));
 server.use(cors());
-
+//mongoDb connection
 mongoose.connect("mongodb+srv://maitidebasish2001:debasish@cluster0.ff0ee.mongodb.net/E-commerce?retryWrites=true&w=majority&appName=Cluster0")
     .then(() => console.log("Connection Established"))
     .catch((error) => console.log(error));
