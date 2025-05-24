@@ -1,0 +1,44 @@
+/* Container spacing */
+.product-details-container {
+  padding: 0 15px;
+}
+
+/* Main image styling */
+.product-main-img {
+  max-height: 450px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Product details section */
+.product-info h4,
+.product-info h6 {
+  margin-bottom: 10px;
+}
+
+/* Similar products */
+.similar-products .card-img-top {
+  height: 180px;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.product-card {
+  border-radius: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .product-main-img {
+    height: auto;
+  }
+
+  .product-info {
+    text-align: center;
+  }
+}

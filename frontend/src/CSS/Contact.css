@@ -1,0 +1,50 @@
+/* Container wrapper */
+.contact-container {
+  background: linear-gradient(135deg, #ffe6f0, #cce0ff);
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(102, 102, 255, 0.3);
+}
+
+/* Row spacing */
+.contact-row {
+  min-height: 250px;
+}
+
+/* Left column styling */
+.contact-left {
+  background-color: #f0f7ff;
+  padding: 30px 25px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 15px rgba(70, 130, 180, 0.2);
+  color: #0b3d91;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Right column styling (currently empty but styled for future content) */
+.contact-right {
+  background: url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80")
+    no-repeat center center/cover;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.contact-title {
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 25px;
+}
+
+/* Contact info */
+.contact-info {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+  color: #34495e;
+  transition: color 0.3s ease;
+}
+
+.contact-info:hover {
+  color: #1e88e5;
+  cursor: default;
+}

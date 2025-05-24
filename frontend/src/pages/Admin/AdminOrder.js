@@ -6,6 +6,7 @@ import { useAuth } from '../../Context/Context';
 import { Select } from 'antd';
 const { Option } = Select;
 import moment from 'moment';
+import '../../CSS/AdminOrder.css';  // Import the new CSS file
 
 const AdminOrder = () => {
     const [status] = useState(['Not Process', 'Processing', 'Shipped', 'Delivered', 'Cancel']);
@@ -16,7 +17,7 @@ const AdminOrder = () => {
 
     const getOrders = async () => {
         try {
-            const { data } = await axios.get('https://e-commerce-9m1c.vercel.app/api/auth/all-orders', {
+            const { data } = await axios.get('http://localhost:8000/api/auth/all-orders', {
                 headers: {
                     Authorization: auth.token,
                 },
@@ -36,7 +37,7 @@ const AdminOrder = () => {
     const handleChange = async (id, value) => {
         try {
             const response = await axios.put(
-                `https://e-commerce-9m1c.vercel.app/api/auth/order-status/${id}`,
+                `http://localhost:8000/api/auth/order-status/${id}`,
                 { status: value },
                 {
                     headers: {
@@ -53,7 +54,7 @@ const AdminOrder = () => {
 
     const getAddress = async (id) => {
         try {
-            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/shiping/get-shipings/${id}`, {
+            const response = await axios.get(`http://localhost:8000/api/shiping/get-shipings/${id}`, {
                 headers: {
                     Authorization: auth.token,
                 },
@@ -68,29 +69,35 @@ const AdminOrder = () => {
         setMonth(value);
     }
 
-    const filteredOrders = month ? orders.filter(orders => moment(orders.createdAt).format('MMMM') === month) : orders;
+    const filteredOrders = month ? orders.filter(order => moment(order.createdAt).format('MMMM') === month) : orders;
 
     return (
         <Layout>
-            <div className='row'>
-                <div className='col-md-2'>
+            <div className='row admin-order-row'>
+                <div className='col-md-2 admin-order-menu-col'>
                     <AdminMenu />
                 </div>
-                <div className='col-md-10'>
-                    <h4><u>filter Orders by month</u></h4>
-                    <Select style={{ width: '140px' }} placeholder='Select Month' onChange={handleMonthChange}>
+                <div className='col-md-10 admin-order-content-col'>
+                    <h4 className='admin-order-filter-title'><u>Filter Orders by month</u></h4>
+                    <Select
+                        className='admin-order-month-select'
+                        style={{ width: '140px' }}
+                        placeholder='Select Month'
+                        onChange={handleMonthChange}
+                    >
                         {moment.months().map((m, index) => (
                             <Option key={index} value={m}>
                                 {m}
                             </Option>
                         ))}
                     </Select>
-                    <h1 className='text-center'>All Orders</h1>
+                    <h1 className='text-center admin-order-title'>All Orders</h1>
+
                     {filteredOrders.length ?
                         filteredOrders.map((order) => (
                             <div
-                                className='border-shadow'
                                 key={order._id}
+                                className='admin-order-card border-shadow'
                                 style={{
                                     marginBottom: '30px',
                                     padding: '20px',
@@ -98,8 +105,8 @@ const AdminOrder = () => {
                                     borderRadius: '10px',
                                 }}
                             >
-                                <h5>Products:</h5>
-                                <table className='table'>
+                                <h5 className='admin-order-products-title'>Products:</h5>
+                                <table className='table admin-order-table'>
                                     <thead>
                                         <tr>
                                             <th scope='col'>Product</th>
@@ -114,12 +121,12 @@ const AdminOrder = () => {
                                     </thead>
                                     <tbody>
                                         {order.products.map((product) => (
-                                            <tr key={product._id}>
-                                                <td>{product.name}</td>
+                                            <tr key={product._id} className='admin-order-product-row'>
+                                                <td className='admin-order-product-name'>{product.name}</td>
                                                 <td>
                                                     <img
-                                                        className='card-img'
-                                                        src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${product._id}`}
+                                                        className='card-img admin-order-product-img'
+                                                        src={`http://localhost:8000/api/product/product-photo/${product._id}`}
                                                         alt={product.name}
                                                         style={{
                                                             borderRadius: '1rem',
@@ -129,12 +136,13 @@ const AdminOrder = () => {
                                                         }}
                                                     />
                                                 </td>
-                                                <td>{order.buyer ? order.buyer.name : 'Guest User'}</td>
+                                                <td className='admin-order-buyer-name'>{order.buyer ? order.buyer.name : 'Guest User'}</td>
                                                 <td>
                                                     <Select
                                                         bordered={false}
                                                         onChange={(value) => handleChange(order._id, value)}
                                                         defaultValue={order.status}
+                                                        className='admin-order-status-select'
                                                     >
                                                         {status.map((s, index) => (
                                                             <Option key={index} value={s}>
@@ -143,16 +151,16 @@ const AdminOrder = () => {
                                                         ))}
                                                     </Select>
                                                 </td>
-                                                <td>{product.description}</td>
-                                                <td>${product.price}</td>
-                                                <td>{product.quantity}</td>
-                                                <td>{moment(order.createdAt).format('MMMM Do YYYY')}</td>
+                                                <td className='admin-order-product-desc'>{product.description}</td>
+                                                <td className='admin-order-product-price'>${product.price}</td>
+                                                <td className='admin-order-product-qty'>{product.quantity}</td>
+                                                <td className='admin-order-product-date'>{moment(order.createdAt).format('MMMM Do YYYY')}</td>
                                             </tr>
                                         ))}
                                         <tr>
                                             <td colSpan="8">
                                                 <div
-                                                    className='accordion'
+                                                    className='accordion admin-order-accordion'
                                                     id={`accordion-${order._id}`}
                                                     style={{
                                                         backgroundColor: '#f8f9fa',
@@ -160,9 +168,9 @@ const AdminOrder = () => {
                                                         marginTop: '10px',
                                                     }}
                                                 >
-                                                    <div className='accordion-item' style={{ border: 'none' }}>
+                                                    <div className='accordion-item admin-order-accordion-item' style={{ border: 'none' }}>
                                                         <h2
-                                                            className='accordion-header'
+                                                            className='accordion-header admin-order-accordion-header'
                                                             id={`heading-${order._id}`}
                                                             style={{
                                                                 backgroundColor: '#343a40',
@@ -170,7 +178,7 @@ const AdminOrder = () => {
                                                             }}
                                                         >
                                                             <button
-                                                                className='accordion-button'
+                                                                className='accordion-button admin-order-accordion-button'
                                                                 type='button'
                                                                 data-bs-toggle='collapse'
                                                                 data-bs-target={`#collapse-${order._id}`}
@@ -187,11 +195,11 @@ const AdminOrder = () => {
                                                         </h2>
                                                         <div
                                                             id={`collapse-${order._id}`}
-                                                            className='accordion-collapse collapse'
+                                                            className='accordion-collapse collapse admin-order-accordion-collapse'
                                                             aria-labelledby={`heading-${order._id}`}
                                                         >
-                                                            <div className='accordion-body'>
-                                                                <table className='table '>
+                                                            <div className='accordion-body admin-order-accordion-body'>
+                                                                <table className='table admin-order-address-table'>
                                                                     <thead>
                                                                         <tr>
                                                                             <th scope='col'>Name</th>
@@ -205,7 +213,7 @@ const AdminOrder = () => {
                                                                     </thead>
                                                                     <tbody>
                                                                         {shiping.map((s, index) => (
-                                                                            <tr key={index}>
+                                                                            <tr key={index} className='admin-order-address-row'>
                                                                                 <td>{s.name}</td>
                                                                                 <td>{s.email}</td>
                                                                                 <td>{s.phone}</td>
@@ -226,8 +234,9 @@ const AdminOrder = () => {
                                     </tbody>
                                 </table>
                             </div>
-                        ))
-                        : ''}
+                        )) : (
+                            <p className="text-center admin-no-orders">No orders found.</p>
+                        )}
                 </div>
             </div>
         </Layout>

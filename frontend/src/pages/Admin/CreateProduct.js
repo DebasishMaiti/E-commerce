@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/Context';
 import { Select } from 'antd';
 const { Option } = Select;
+import '../../CSS/CreateProduct.css'
 
 const CreateProduct = () => {
     const navigate = useNavigate();
@@ -50,7 +51,7 @@ const CreateProduct = () => {
 
     const getAllCategory = async () => {
         try {
-            const response = await axios.get("https://e-commerce-9m1c.vercel.app/api/category/get-category");
+            const response = await axios.get("http://localhost:8000/api/category/get-category");
             if (response) {
                 setCategories(response.data.category);
             }
@@ -67,7 +68,7 @@ const CreateProduct = () => {
     const GetSubCategory = async () => {
         if (!parentCategory) return;
         try {
-            const { data } = await axios.get(`https://e-commerce-9m1c.vercel.app/api/subcategory/get-subcategory/${parentCategory}`);
+            const { data } = await axios.get(`http://localhost:8000/api/subcategory/get-subcategory/${parentCategory}`);
             if (data) {
                 setSubcategories(data.subcategories);
             }
@@ -94,7 +95,7 @@ const CreateProduct = () => {
             newFormData.append("shipping", formData.shipping);
             newFormData.append('photo', file);
 
-            const response = await axios.post('https://e-commerce-9m1c.vercel.app/api/product/create-product', newFormData, {
+            const response = await axios.post('http://localhost:8000/api/product/create-product', newFormData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': auth.token
@@ -112,21 +113,21 @@ const CreateProduct = () => {
 
     return (
         <Layout>
-            <div className='container-fluid m-3 p-3'>
+            <div className='container-fluid m-3 p-3 create-product'>
                 <div className='row'>
-                    <div className='col-md-2'>
+                    <div className='col-md-2' style={{ backgroundColor: '#343a40' }}>
                         <AdminMenu />
                     </div>
                     <div className='col-md-10'>
-                        <h1 className='text-center'>Create Product</h1>
-                        <form className='m-1 w-75' onSubmit={handleCreate}>
+                        <h1 className='text-center create-product-title'>Create Product</h1>
+                        <form className='create-product-form m-1 w-100 w-md-75' onSubmit={handleCreate}>
                             <label>Select a category</label>
                             <Select
                                 bordered={false}
                                 placeholder='Select a category'
                                 size='large'
                                 showSearch
-                                className='form-select mb-3'
+                                className='form-select mb-3 create-select'
                                 value={formData.category}
                                 onChange={(value) => {
                                     setParentCategory(value);
@@ -143,7 +144,7 @@ const CreateProduct = () => {
                                 placeholder='Select a subcategory'
                                 size='large'
                                 showSearch
-                                className='form-select mb-3'
+                                className='form-select mb-3 create-select'
                                 value={formData.subcategory}
                                 onChange={(value) => setFormData({ ...formData, subcategory: value })}
                                 disabled={!subcategories.length}
@@ -153,19 +154,20 @@ const CreateProduct = () => {
                                 ))}
                             </Select>
 
-                            <div className='mb-3 btn btn-secondary w-100 '>
+                            <div className='mb-3 btn btn-secondary w-100 file-input-wrapper'>
                                 <input
                                     type='file'
                                     placeholder='Choose File'
                                     name='photo'
                                     onChange={handleFileChange}
+                                    className='file-input'
                                 />
                             </div>
 
                             <div className='mb-3'>
                                 {file && (
                                     <div className='text-center'>
-                                        <img src={URL.createObjectURL(file)} height={'200px'} className='img img-responsive' alt='Selected file preview' />
+                                        <img src={URL.createObjectURL(file)} height={'200px'} className='img img-responsive preview-img' alt='Selected file preview' />
                                     </div>
                                 )}
                             </div>
@@ -176,7 +178,7 @@ const CreateProduct = () => {
                                     type='text'
                                     name='name'
                                     value={formData.name}
-                                    className='form-control'
+                                    className='form-control input-field'
                                     onChange={handleChange}
                                 />
                             </div>
@@ -185,7 +187,7 @@ const CreateProduct = () => {
                                 <textarea
                                     placeholder='Description of the product'
                                     type="text"
-                                    className="form-control"
+                                    className="form-control input-field"
                                     name='description'
                                     value={formData.description}
                                     onChange={handleChange}
@@ -198,7 +200,7 @@ const CreateProduct = () => {
                                     type="number"
                                     name='price'
                                     value={formData.price}
-                                    className="form-control"
+                                    className="form-control input-field"
                                     onChange={handleChange}
                                 />
                             </div>
@@ -209,7 +211,7 @@ const CreateProduct = () => {
                                     type="number"
                                     name='quantity'
                                     value={formData.quantity}
-                                    className="form-control"
+                                    className="form-control input-field"
                                     onChange={handleChange}
                                 />
                             </div>
@@ -220,7 +222,7 @@ const CreateProduct = () => {
                                     placeholder="Select Shipping"
                                     size="large"
                                     showSearch
-                                    className="form-select mb-3"
+                                    className="form-select mb-3 create-select"
                                     value={formData.shipping}
                                     onChange={(value) => setFormData({ ...formData, shipping: value })}
                                 >
@@ -230,7 +232,7 @@ const CreateProduct = () => {
                             </div>
 
                             <div className='mb-3'>
-                                <button type='submit' className='btn btn-primary'>Create Product</button>
+                                <button type='submit' className='btn btn-primary w-100'>Create Product</button>
                             </div>
                         </form>
                     </div>

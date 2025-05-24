@@ -1,0 +1,30 @@
+/* Center form vertically and horizontally */
+.login-container {
+  height: 80vh;
+  padding: 20px;
+}
+
+/* Card styling */
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff;
+}
+
+/* Forgot password link */
+.forgot-link {
+  color: #0d6efd;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.forgot-link:hover {
+  color: #0a58ca;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .login-card {
+    padding: 20px 15px;
+  }
+}

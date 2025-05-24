@@ -4,13 +4,16 @@ import axios from 'axios';
 import { Radio } from 'antd';
 import { Pagination, Carousel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../Context/Cart';
+//import { useCart } from '../Context/Cart';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../CSS/Home.css'
+import { useAuth } from '../Context/Context'
 
 const Home = () => {
+    const [auth] = useAuth();
     const navigate = useNavigate();
-    const [cart, setCart] = useCart();
+    //const [cart, setCart] = useCart();
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [subcategories, setSubcategories] = useState([]);
@@ -27,7 +30,7 @@ const Home = () => {
 
     const getBestSellingProduct = async () => {
         try {
-            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/best-selling-product`);
+            const response = await axios.get(`http://localhost:8000/api/product/best-selling-product`);
             setBestSellingProducts(response.data);
             console.log(response.data)
         } catch (error) {
@@ -39,7 +42,7 @@ const Home = () => {
     }, [])
     const getAllCategory = async () => {
         try {
-            const response = await axios.get("https://e-commerce-9m1c.vercel.app/api/category/get-category/");
+            const response = await axios.get("http://localhost:8000/api/category/get-category/");
             if (response) {
                 setCategories(response.data.category);
             }
@@ -50,7 +53,7 @@ const Home = () => {
 
     const getAllProduct = async () => {
         try {
-            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/get-product/?page=${page}&q=${value}`);
+            const response = await axios.get(`http://localhost:8000/api/product/get-product/?page=${page}&q=${value}`);
             setProducts(response.data.product);
             setTotalRecords(response.data.totalRecord);
         } catch (error) {
@@ -60,7 +63,7 @@ const Home = () => {
 
     const getFilteredProduct = async () => {
         try {
-            const response = await axios.post(`https://e-commerce-9m1c.vercel.app/api/product/filter-product/?page=${page}`, { checked, radio, subcategory: checkedSubcategories });
+            const response = await axios.post(`http://localhost:8000/api/product/filter-product/?page=${page}`, { checked, radio, subcategory: checkedSubcategories });
             setProducts(response.data.product);
             setTotalRecords(response.data.totalRecord);
         } catch (error) {
@@ -70,7 +73,7 @@ const Home = () => {
 
     const fetchPriceRanges = async () => {
         try {
-            const response = await axios.get('https://e-commerce-9m1c.vercel.app/api/product/get-price-ranges');
+            const response = await axios.get('http://localhost:8000/api/product/get-price-ranges');
             setPriceRanges(response.data.priceRanges);
         } catch (error) {
             console.log(error);
@@ -126,7 +129,7 @@ const Home = () => {
 
     const GetSubCategory = async () => {
         try {
-            const { data } = await axios.get(`https://e-commerce-9m1c.vercel.app/api/subcategory/get-subcategory/${parentCategory}`);
+            const { data } = await axios.get(`http://localhost:8000/api/subcategory/get-subcategory/${parentCategory}`);
             if (data) {
                 setSubcategories(data.subcategories);
             }
@@ -164,6 +167,15 @@ const Home = () => {
                 {number}
             </Pagination.Item>,
         );
+    }
+
+    const handleAddToCart = async (id) => {
+        try {
+            const response = await axios.post(`http://localhost:8000/api/cart/addtocart/${auth.user._id}`, { product: id });
+            response ? toast.success('Item Added to cart') : toast.error('Something went wrong')
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -284,17 +296,13 @@ const Home = () => {
                         <div className="d-flex flex-wrap justify-content-start mt-4">
                             {products.map((p, index) => (
                                 <div className="card m-2" style={{ width: '18rem', border: '1px solid #ddd', borderRadius: '4px', overflow: 'hidden' }} key={index}>
-                                    <img src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} style={{ height: '200px', objectFit: 'cover' }} />
+                                    <img src={`http://localhost:8000/api/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} style={{ height: '200px', objectFit: 'cover' }} />
                                     <div className="card-body">
                                         <h5 className="card-title">{p.name}</h5>
                                         <p className="card-text">{`${p.description.substring(0, 20)}...`}</p>
                                         <p className="card-text"> ${p.price} </p>
                                         <button className='btn btn-info' onClick={() => navigate(`/product/${p.slug}`)} style={{ width: '100%', marginBottom: '10px' }}>More Details</button>
-                                        <button className='btn btn-dark' onClick={() => {
-                                            setCart([...cart, p]);
-                                            localStorage.setItem("cart", JSON.stringify([...cart, p]));
-                                            toast.success("Item added to cart");
-                                        }} style={{ width: '100%' }}>ADD TO CART</button>
+                                        <button className='btn btn-dark' onClick={() => handleAddToCart(p._id)} style={{ width: '100%' }}>ADD TO CART</button>
                                     </div>
                                 </div>
                             ))}
@@ -306,17 +314,13 @@ const Home = () => {
                             <div className="d-flex flex-wrap justify-content-start mt-4">
                                 {bestSellingProducts.map((p, index) => (
                                     <div className="card m-2" style={{ width: '18rem', border: '1px solid #ddd', borderRadius: '4px', overflow: 'hidden' }} key={index}>
-                                        <img src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${p._id._id}`} className="card-img-top" alt={p.name} style={{ height: '200px', objectFit: 'cover' }} />
+                                        <img src={`http://localhost:8000/api/product/product-photo/${p._id._id}`} className="card-img-top" alt={p.name} style={{ height: '200px', objectFit: 'cover' }} />
                                         <div className="card-body">
                                             <h5 className="card-title">{p._id.name}</h5>
                                             <p className="card-text">{`${p._id.description.substring(0, 20)}...`}</p>
                                             <p className="card-text"> ${p._id.price} </p>
                                             <button className='btn btn-info' onClick={() => navigate(`/product/${p._id.slug}`)} style={{ width: '100%', marginBottom: '10px' }}>More Details</button>
-                                            <button className='btn btn-dark' onClick={() => {
-                                                setCart([...cart, p._id]);
-                                                localStorage.setItem("cart", JSON.stringify([...cart, p._id]));
-                                                toast.success("Item added to cart");
-                                            }} style={{ width: '100%' }}>ADD TO CART</button>
+                                            <button className='btn btn-dark' onClick={() => handleAddToCart(p._id)} style={{ width: '100%' }}>ADD TO CART</button>
                                         </div>
                                     </div>
                                 ))}

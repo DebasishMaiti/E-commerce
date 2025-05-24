@@ -1,0 +1,73 @@
+.admin-order-row {
+  min-height: 80vh;
+}
+
+.admin-order-menu-col {
+  background-color: #343a40; /* Sidebar dark background */
+  color: white;
+  border-radius: 8px;
+  min-height: 80vh;
+}
+
+.admin-order-content-col {
+  padding: 20px;
+}
+
+.admin-order-filter-title {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 600;
+}
+
+.admin-order-month-select {
+  margin-bottom: 20px;
+}
+
+.admin-order-title {
+  margin-bottom: 30px;
+  color: #007bff;
+}
+
+.admin-order-card {
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-order-products-title {
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.admin-order-table th,
+.admin-order-table td {
+  vertical-align: middle;
+}
+
+.admin-order-product-img {
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.admin-order-status-select {
+  width: 140px;
+}
+
+.admin-order-accordion-button {
+  background-color: #f8f9fa !important;
+  color: #343a40 !important;
+  font-weight: 600;
+}
+
+.admin-order-accordion-button:focus {
+  box-shadow: none;
+}
+
+.admin-order-address-table th,
+.admin-order-address-table td {
+  text-align: center;
+}
+
+.admin-no-orders {
+  font-size: 1.2rem;
+  color: #999;
+}

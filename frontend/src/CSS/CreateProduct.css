@@ -1,0 +1,69 @@
+/* Container responsiveness */
+.create-product-wrapper {
+  padding: 1rem;
+}
+
+/* Form container spacing */
+.form-container {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive select elements */
+.select-category,
+.select-subcategory,
+.select-shipping {
+  width: 100% !important;
+}
+
+/* Input fields */
+.input-field {
+  font-size: 1rem;
+  padding: 0.6rem;
+}
+
+/* Image preview */
+.image-preview-wrapper img.preview-img {
+  border-radius: 10px;
+  margin-top: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* File input */
+.custom-file-input input[type="file"] {
+  cursor: pointer;
+  background: #f8f9fa;
+  padding: 0.5rem;
+}
+
+/* Submit button */
+.submit-btn {
+  font-size: 1rem;
+  padding: 0.75rem;
+}
+
+/* Responsive handling */
+@media screen and (max-width: 768px) {
+  .form-container {
+    padding: 1rem;
+  }
+
+  .create-product-title {
+    font-size: 1.5rem;
+  }
+
+  .input-field,
+  .create-select {
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+  }
+}

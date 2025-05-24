@@ -1,0 +1,121 @@
+.cartpage-container {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(120deg, #e0f7fa, #ffecb3);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 150, 136, 0.2);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cartpage-header-text {
+  margin-bottom: 2rem;
+  color: #004d40;
+}
+
+.cartpage-greeting {
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: #00796b;
+}
+
+.cartpage-subtitle {
+  font-size: 1.3rem;
+  color: #004d40;
+}
+
+.cartpage-product-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 77, 64, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.cartpage-product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 77, 64, 0.3);
+}
+
+.cartpage-product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+.cartpage-product-name {
+  font-weight: 600;
+  color: #00695c;
+}
+
+.cartpage-product-description {
+  color: #555;
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.cartpage-product-price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #00796b;
+}
+
+.cartpage-remove-btn {
+  font-weight: 600;
+  padding: 0.4rem 1.2rem;
+}
+
+.cartpage-summary-col {
+  background-color: #fff3e0;
+  padding: 20px 15px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(255, 152, 0, 0.2);
+  color: #bf360c;
+}
+
+.cartpage-summary-title {
+  font-weight: 700;
+  color: #e65100;
+  margin-bottom: 0.8rem;
+}
+
+.cartpage-summary-subtitle {
+  color: #f57c00;
+  margin-bottom: 1rem;
+}
+
+.cartpage-total-price {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.cartpage-address-section {
+  background: #fff8e1;
+  padding: 12px 10px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ffecb3;
+  color: #5d4037;
+}
+
+.cartpage-address {
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.cartpage-action-buttons button {
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+.cartpage-action-buttons .btn-info {
+  background-color: #0288d1;
+  border-color: #0288d1;
+  transition: background-color 0.3s ease;
+}
+
+.cartpage-action-buttons .btn-info:hover {
+  background-color: #0277bd;
+  border-color: #0277bd;
+}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from '../Context/Context';
-import { useLocation } from 'react-router-dom';
+import '../CSS/Login.css';
 
 const Login = () => {
     const [auth, setAuth] = useAuth();
@@ -28,8 +28,7 @@ const Login = () => {
     const dataSendToApi = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://e-commerce-9m1c.vercel.app/api/auth/login", formData);
-            console.log(response);
+            const response = await axios.post("http://localhost:8000/api/auth/login", formData);
             if (response.data) {
                 setAuth({
                     ...auth,
@@ -37,14 +36,12 @@ const Login = () => {
                     token: response.data.token,
                 });
                 localStorage.setItem("auth", JSON.stringify(response.data));
-                console.log(response.data);
                 toast.success('Login Successful');
-
                 setTimeout(() => {
-                    let authentication = JSON.parse(localStorage.getItem('auth'))
-                    authentication.user.role == 1 ? navigate('/dashboard/admin') : navigate(location.state || '/')
-
-                    // // navigate(location.state || '/')
+                    const authentication = JSON.parse(localStorage.getItem('auth'));
+                    authentication.user.role === 1
+                        ? navigate('/dashboard/admin')
+                        : navigate(location.state || '/');
                 }, 1800);
             }
         } catch (error) {
@@ -56,19 +53,39 @@ const Login = () => {
     return (
         <>
             <Layout>
-                <div className="register justify-content-center text-center">
-                    <div className="register login-Form d-flex justify-content-center mt-4 rounded-3" style={{ width: "25%" }}>
-                        <h1>Login Form</h1>
-                        <form className='mt-3' onSubmit={dataSendToApi}>
+                <div className="login-container d-flex justify-content-center align-items-center">
+                    <div className="login-card shadow p-4 rounded">
+                        <h2 className="text-center mb-4">Login</h2>
+                        <form onSubmit={dataSendToApi}>
                             <div className="mb-3">
-                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' value={formData.email} placeholder='Enter Your Email' onChange={handleChange} />
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    name="email"
+                                    value={formData.email}
+                                    placeholder="Enter Your Email"
+                                    onChange={handleChange}
+                                    required
+                                />
                             </div>
                             <div className="mb-3">
-                                <input type="password" className="form-control" id="exampleInputPassword1" name='password' value={formData.password} placeholder='Enter Your Password' onChange={handleChange} />
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    name="password"
+                                    value={formData.password}
+                                    placeholder="Enter Your Password"
+                                    onChange={handleChange}
+                                    required
+                                />
                             </div>
-                            <button type="submit" className="btn btn-primary" >Submit</button>
-                            <div className='mb-3'>
-                                <u><span onClick={() => navigate('/forgot-password')} style={{ cursor: "pointer" }}>Forgot Password ?</span></u>
+                            <div className="d-grid gap-2 mb-2">
+                                <button type="submit" className="btn btn-primary">Submit</button>
+                            </div>
+                            <div className="text-center">
+                                <span className="forgot-link" onClick={() => navigate('/forgot-password')}>
+                                    Forgot Password?
+                                </span>
                             </div>
                         </form>
                     </div>

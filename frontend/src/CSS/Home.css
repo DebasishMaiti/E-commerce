@@ -1,116 +1,152 @@
-/* Home.css */
-
-/* Style for the sidebar */
-.sidebar {
-  position: fixed;
-  width: 15rem;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  height: 100%;
+/* Sidebar styling */
+.col-md-2.position-fixed {
+  background: linear-gradient(135deg, #62bdde 0%, #ffffff 100%);
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for the filter section */
-.filter-section h4,
-.filter-section h5 {
+.col-md-2 h5 {
   font-weight: bold;
-  margin-bottom: 1rem;
+  color: #444;
+  margin-top: 20px;
 }
 
-/* Style for the price filter section */
-.price-filter {
-  margin-top: 2rem;
+.form-control {
+  margin-bottom: 12px;
+  border-radius: 8px;
 }
 
-/* Style for the reset filter button */
-.reset-button {
-  margin-top: 1rem;
+/* Buttons */
+.btn-info {
+  background: linear-gradient(90deg, #00c9ff, #92fe9d);
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 
-/* Style for the product cards */
-.product-card {
+.btn-info:hover {
+  background: linear-gradient(90deg, #00b4db, #38ef7d);
+  color: #fff;
+}
+
+.btn-dark {
+  background-color: #343a40;
+  font-weight: bold;
+  color: #fff;
+}
+
+.btn-dark:hover {
+  background-color: #23272b;
+}
+
+/* Accordion */
+.accordion-button {
+  font-weight: 600;
+  background-color: #fff;
+  color: #333;
+}
+
+.accordion-body {
+  background-color: #f9f9f9;
+  padding: 12px 15px;
+}
+
+/* Carousel */
+.custom-carousel img {
+  height: 420px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Product Cards */
+.card {
   width: 18rem;
-  margin: 1rem;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: linear-gradient(to bottom right, #ffffff, #f1f1f1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.product-card img {
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
   height: 200px;
   object-fit: cover;
+  border-bottom: 3px solid #eee;
 }
 
-.product-card .card-body {
-  padding: 1rem;
-}
-
-.product-card .card-title {
-  font-size: 1.25rem;
+.card-title {
+  font-size: 1.2rem;
   font-weight: bold;
+  color: #2c3e50;
 }
 
-.product-card .card-text {
-  margin-bottom: 1rem;
+.card-text {
+  font-size: 0.95rem;
+  color: #666;
 }
 
-.product-card button {
-  margin-top: 0.5rem;
+/* Pagination */
+.pagination {
+  margin-top: 30px;
 }
 
-/* Carousel customization */
-.custom-carousel .carousel-item img {
-  height: 400px;
-  object-fit: cover;
+.pagination .page-item .page-link {
+  color: #00c9ff;
+  border-radius: 6px;
+  margin: 0 5px;
 }
 
-/* Pagination style */
-.pagination-container {
-  margin-top: 2rem;
+.pagination .page-item.active .page-link {
+  background-color: #00c9ff;
+  color: white;
+  border-color: #00c9ff;
 }
 
-/* Responsive Design */
+/* Best Selling Section */
+.mt-5 h4 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  border-left: 6px solid #00c9ff;
+  padding-left: 12px;
+}
 
-/* For small devices (tablets, 768px and below) */
+/* Layout adjustments */
+.col-md-10.min-vh-80 {
+  margin-left: 17rem;
+  padding: 25px;
+  background-color: #fff;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .sidebar {
-    position: relative;
-    width: 100%;
-    margin-bottom: 1rem;
+  .col-md-2.position-fixed {
+    position: relative !important;
     height: auto;
-  }
-
-  .product-card {
     width: 100%;
-    margin: 0.5rem 0;
+    background: #ffe8d6;
   }
 
-  .custom-carousel .carousel-item img {
-    height: 300px;
-  }
-}
-
-/* For extra small devices (phones, 576px and below) */
-@media (max-width: 576px) {
-  .product-card {
-    width: 100%;
-    margin: 0.5rem 0;
+  .col-md-10.min-vh-80 {
+    margin-left: 0 !important;
   }
 
-  .custom-carousel .carousel-item img {
-    height: 200px;
+  .custom-carousel img {
+    height: 250px !important;
   }
 
-  .sidebar {
-    padding: 0.5rem;
-  }
-
-  .filter-section h4,
-  .filter-section h5 {
-    font-size: 1rem;
-  }
-
-  .reset-button {
-    margin-top: 0.5rem;
-  }
-
-  .pagination-container {
-    flex-direction: column;
+  .card {
+    width: 100% !important;
   }
 }

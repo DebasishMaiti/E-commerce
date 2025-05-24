@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layout/Layout';
-import { useCart } from '../../Context/Cart';
+
 import { useAuth } from '../../Context/Context';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Checkout = () => {
     const [showInput, setShowInput] = useState(false);
     const [showAddInput, setShowAddInput] = useState(false);
-    const [cart, setCart] = useCart();
+    const [cart, setCart] = useState();
     const [auth] = useAuth();
     const navigate = useNavigate();
     const [clientToken, setClientToken] = useState('');
@@ -30,6 +30,28 @@ const Checkout = () => {
         zip: '',
     });
 
+    const getCart = async () => {
+        try {
+            const { data } = await axios.get(`http://localhost:8000/api/cart/getcart/${auth.user._id}`);
+            const productIds = data.cart[0]?.product || [];
+
+            const productDetails = await Promise.all(
+                productIds.map(id => axios.get(`http://localhost:8000/api/product/get-single-product/${id}`))
+            );
+
+            const products = productDetails.map(res => res.data.product);
+
+            setCart(products);
+        } catch (error) {
+            console.log('Error fetching cart:', error);
+            setCart([]);
+        }
+    };
+
+    useEffect(() => {
+        getCart()
+    }, [])
+
     const handleChange = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
@@ -42,25 +64,34 @@ const Checkout = () => {
     const handlePostShiping = async (orderId) => {
         try {
             const response = await axios.post(
-                `https://e-commerce-9m1c.vercel.app/api/shiping/add-shiping/${orderId}/${auth.user._id}`,
+                `http://localhost:8000/api/shiping/add-shiping/${orderId}/${auth.user._id}`,
                 formData
             );
             console.log(response);
+            DeleteCart(auth.user._id)
         } catch (error) {
             console.log(error);
         }
     };
 
-    const totalPrice = () => {
-        let total = 0;
-        cart.map((item) => (total += item.price));
-        return total;
-    };
+    const DeleteCart = async (id) => {
+        try {
+            await axios.delete(`http://localhost:8000/api/cart/deletecart/${id}`)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // const totalPrice = () => {
+    //     let total = 0;
+    //     cart.map((item) => (total += item.price));
+    //     return total;
+    // };
 
     const getToken = async () => {
         try {
             const response = await axios.get(
-                'https://e-commerce-9m1c.vercel.app/api/product/braintree/token'
+                'http://localhost:8000/api/product/braintree/token'
             );
             setClientToken(response.data.clientToken);
         } catch (error) {
@@ -76,15 +107,16 @@ const Checkout = () => {
         try {
             setLoading(true);
             const { nonce } = await instance.requestPaymentMethod();
+            console.log(cart,);
+
             const response = await axios.post(
-                `https://e-commerce-9m1c.vercel.app/api/product/braintree/payment/${auth.user._id}`,
+                `http://localhost:8000/api/product/braintree/payment/${auth.user._id}`,
                 {
                     nonce,
                     cart,
                 }
             );
             setLoading(false);
-            localStorage.removeItem('cart');
             setCart([]);
             navigate('/dashboard/user/orders');
             toast.success('Payment Done');
@@ -102,7 +134,7 @@ const Checkout = () => {
             setLoading(true);
             const { nonce } = await instance.requestPaymentMethod();
             const response = await axios.post(
-                `https://e-commerce-9m1c.vercel.app/api/product/braintree/payments/${guest}`,
+                `http://localhost:8000/api/product/braintree/payments/${guest}`,
                 {
                     nonce,
                     cart,
@@ -125,7 +157,7 @@ const Checkout = () => {
     const getShipings = async () => {
         try {
             const response = await axios.get(
-                `https://e-commerce-9m1c.vercel.app/api/shiping/get-user-shipings/${auth.user._id}`
+                `http://localhost:8000/api/shiping/get-user-shipings/${auth.user._id}`
             );
             setUserAdd(response.data.shiping);
         } catch (error) {
@@ -420,7 +452,7 @@ const Checkout = () => {
                         <h2>Cart Summary</h2>
                         <p>Total | Checkout | Payment</p>
                         <hr />
-                        <h4>Total: ${totalPrice()}</h4>
+                        {/* <h4>Total: ${totalPrice()}</h4> */}
                         {auth?.user?.address ? (
                             <>
                                 <div className="mb-3">

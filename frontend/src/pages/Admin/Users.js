@@ -7,7 +7,7 @@ const Users = () => {
         <Layout>
             <div className='container-fluid m-3 p-3'>
                 <div className='row'>
-                    <div className='col-md-3'>
+                    <div className='col-md-3' style={{ backgroundColor: '#343a40' }}>
                         <AdminMenu />
                     </div>
                     <div className='col-md-9'>

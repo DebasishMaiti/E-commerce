@@ -1,0 +1,16 @@
+.create-category-title {
+  font-weight: 700;
+  color: #007bff;
+}
+
+.create-category-table-wrapper {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+.create-subcategory-submit-btn {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+/* etc. */

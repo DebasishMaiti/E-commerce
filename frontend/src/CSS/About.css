@@ -1,0 +1,49 @@
+.about-container {
+  background: linear-gradient(135deg, #fceabb, #f8b500);
+  padding: 40px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(248, 181, 0, 0.3);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #3e2723;
+}
+
+.about-row {
+  min-height: 350px;
+}
+
+.right-section {
+  /* Placeholder for image or background */
+  background: url("../images/about.jpeg") no-repeat center center/cover;
+  border-radius: 15px;
+}
+
+.left-section {
+  justify-content: center;
+}
+
+.about-title {
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: #bf360c;
+  margin-bottom: 1.2rem;
+}
+
+.about-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #5d4037;
+  max-width: 90%;
+}
+
+.about-readmore-btn {
+  margin-top: 2rem;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.about-readmore-btn:hover {
+  background-color: #a0522d;
+  color: #fff;
+}
