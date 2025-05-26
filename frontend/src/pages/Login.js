@@ -28,7 +28,7 @@ const Login = () => {
     const dataSendToApi = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("https://e-commerce-two-lemon.vercel.app/api/auth/login", formData);
+            const response = await axios.post("https://e-commerce-9m1c.vercel.app/api/auth/login", formData);
             if (response.data) {
                 setAuth({
                     ...auth,
