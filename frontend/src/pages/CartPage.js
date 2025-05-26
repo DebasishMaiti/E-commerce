@@ -13,11 +13,11 @@ const CartPage = () => {
 
     const getCart = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:8000/api/cart/getcart/${auth.user._id}`);
+            const { data } = await axios.get(`https://e-commerce-two-lemon.vercel.app/api/cart/getcart/${auth.user._id}`);
             const productIds = data.cart[0]?.product || [];
 
             const productDetails = await Promise.all(
-                productIds.map((id) => axios.get(`http://localhost:8000/api/product/get-single-product/${id}`))
+                productIds.map((id) => axios.get(`https://e-commerce-two-lemon.vercel.app/api/product/get-single-product/${id}`))
             );
 
             const products = productDetails.map((res) => res.data.product);
@@ -34,7 +34,7 @@ const CartPage = () => {
 
     const removeCartItem = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/api/cart/removeproduct/${auth.user._id}`, { data: { product: id } });
+            await axios.delete(`https://e-commerce-two-lemon.vercel.app/api/cart/removeproduct/${auth.user._id}`, { data: { product: id } });
             getCart();
         } catch (error) {
             console.log(error);
@@ -70,7 +70,7 @@ const CartPage = () => {
                                 <div className="col-md-4 cartpage-product-image-col">
                                     <img
                                         className="card-img cartpage-product-image"
-                                        src={`http://localhost:8000/api/product/product-photo/${p._id}`}
+                                        src={`https://e-commerce-two-lemon.vercel.app/api/product/product-photo/${p._id}`}
                                         alt={p.name}
                                         style={{ borderRadius: '1rem' }}
                                     />

@@ -32,11 +32,11 @@ const Checkout = () => {
 
     const getCart = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:8000/api/cart/getcart/${auth.user._id}`);
+            const { data } = await axios.get(`https://e-commerce-two-lemon.vercel.app/api/cart/getcart/${auth.user._id}`);
             const productIds = data.cart[0]?.product || [];
 
             const productDetails = await Promise.all(
-                productIds.map(id => axios.get(`http://localhost:8000/api/product/get-single-product/${id}`))
+                productIds.map(id => axios.get(`https://e-commerce-two-lemon.vercel.app/api/product/get-single-product/${id}`))
             );
 
             const products = productDetails.map(res => res.data.product);
@@ -64,7 +64,7 @@ const Checkout = () => {
     const handlePostShiping = async (orderId) => {
         try {
             const response = await axios.post(
-                `http://localhost:8000/api/shiping/add-shiping/${orderId}/${auth.user._id}`,
+                `https://e-commerce-two-lemon.vercel.app/api/shiping/add-shiping/${orderId}/${auth.user._id}`,
                 formData
             );
             console.log(response);
@@ -76,7 +76,7 @@ const Checkout = () => {
 
     const DeleteCart = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/api/cart/deletecart/${id}`)
+            await axios.delete(`https://e-commerce-two-lemon.vercel.app/api/cart/deletecart/${id}`)
         } catch (error) {
             console.log(error);
         }
@@ -91,7 +91,7 @@ const Checkout = () => {
     const getToken = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:8000/api/product/braintree/token'
+                'https://e-commerce-two-lemon.vercel.app/api/product/braintree/token'
             );
             setClientToken(response.data.clientToken);
         } catch (error) {
@@ -110,7 +110,7 @@ const Checkout = () => {
             console.log(cart,);
 
             const response = await axios.post(
-                `http://localhost:8000/api/product/braintree/payment/${auth.user._id}`,
+                `https://e-commerce-two-lemon.vercel.app/api/product/braintree/payment/${auth.user._id}`,
                 {
                     nonce,
                     cart,
@@ -134,7 +134,7 @@ const Checkout = () => {
             setLoading(true);
             const { nonce } = await instance.requestPaymentMethod();
             const response = await axios.post(
-                `http://localhost:8000/api/product/braintree/payments/${guest}`,
+                `https://e-commerce-two-lemon.vercel.app/api/product/braintree/payments/${guest}`,
                 {
                     nonce,
                     cart,
@@ -157,7 +157,7 @@ const Checkout = () => {
     const getShipings = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:8000/api/shiping/get-user-shipings/${auth.user._id}`
+                `https://e-commerce-two-lemon.vercel.app/api/shiping/get-user-shipings/${auth.user._id}`
             );
             setUserAdd(response.data.shiping);
         } catch (error) {

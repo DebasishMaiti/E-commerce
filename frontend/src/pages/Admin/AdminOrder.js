@@ -17,7 +17,7 @@ const AdminOrder = () => {
 
     const getOrders = async () => {
         try {
-            const { data } = await axios.get('http://localhost:8000/api/auth/all-orders', {
+            const { data } = await axios.get('https://e-commerce-two-lemon.vercel.app/api/auth/all-orders', {
                 headers: {
                     Authorization: auth.token,
                 },
@@ -37,7 +37,7 @@ const AdminOrder = () => {
     const handleChange = async (id, value) => {
         try {
             const response = await axios.put(
-                `http://localhost:8000/api/auth/order-status/${id}`,
+                `https://e-commerce-two-lemon.vercel.app/api/auth/order-status/${id}`,
                 { status: value },
                 {
                     headers: {
@@ -54,7 +54,7 @@ const AdminOrder = () => {
 
     const getAddress = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/shiping/get-shipings/${id}`, {
+            const response = await axios.get(`https://e-commerce-two-lemon.vercel.app/api/shiping/get-shipings/${id}`, {
                 headers: {
                     Authorization: auth.token,
                 },
@@ -126,7 +126,7 @@ const AdminOrder = () => {
                                                 <td>
                                                     <img
                                                         className='card-img admin-order-product-img'
-                                                        src={`http://localhost:8000/api/product/product-photo/${product._id}`}
+                                                        src={`https://e-commerce-two-lemon.vercel.app/api/product/product-photo/${product._id}`}
                                                         alt={product.name}
                                                         style={{
                                                             borderRadius: '1rem',

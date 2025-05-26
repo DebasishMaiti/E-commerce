@@ -50,7 +50,7 @@ const UpdateProduct = () => {
 
     const getSingleProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/product/get-product/${params.slug}`);
+            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/get-product/${params.slug}`);
             const data = response.data.product;
             setId(data._id);
             setFormData({
@@ -72,7 +72,7 @@ const UpdateProduct = () => {
 
     const getAllCategories = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/api/category/get-category");
+            const response = await axios.get("https://e-commerce-9m1c.vercel.app/api/category/get-category");
             if (response) {
                 setCategories(response.data.category);
             }
@@ -98,7 +98,7 @@ const UpdateProduct = () => {
             newFormData.append("shipping", formData.shipping);
             if (file) newFormData.append("photo", file);
 
-            const response = await axios.put(`http://localhost:8000/api/product/update-product/${id}`, newFormData, {
+            const response = await axios.put(`https://e-commerce-9m1c.vercel.app/api/product/update-product/${id}`, newFormData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': auth.token
@@ -116,7 +116,7 @@ const UpdateProduct = () => {
 
     const handleDelete = async () => {
         try {
-            const response = await axios.delete(`http://localhost:8000/api/product/delete-product/${id}`);
+            const response = await axios.delete(`https://e-commerce-9m1c.vercel.app/api/product/delete-product/${id}`);
             toast.success(response.data.message);
             navigate('/dashboard/admin/products');
         } catch (error) {
@@ -129,7 +129,7 @@ const UpdateProduct = () => {
         <Layout>
             <div className='container-fluid m-3 p-3'>
                 <div className='row'>
-                    <div className='col-md-2' style={{ backgroundColor: '#343a40' }}>
+                    <div className='col-md-2'>
                         <AdminMenu />
                     </div>
                     <div className='col-md-10'>
@@ -165,7 +165,7 @@ const UpdateProduct = () => {
                                     </div>
                                 ) : (
                                     <div className='text-center'>
-                                        <img src={`http://localhost:8000/api/product/product-photo/${id}`} height={'200px'} className='img img-responsive' alt="product"></img>
+                                        <img src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${id}`} height={'200px'} className='img img-responsive' alt="product"></img>
                                     </div>
                                 )}
                             </div>
