@@ -79,6 +79,23 @@ exports.getSingleProduct = async (req, res) => {
     }
 };
 
+exports.getSingleProductById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const product = await ProductModel.findOne({ _id: id }).select("-photo")
+        res.status(200).send({
+            message: "single product",
+            product
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            message: " Error in single product",
+            error
+        })
+    }
+};
+
 exports.getProductPhoto = async (req, res) => {
     try {
         const { id } = req.params;

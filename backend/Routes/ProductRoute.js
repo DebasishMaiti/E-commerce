@@ -10,6 +10,8 @@ router.get('/get-product', ProductController.getProduct);
 
 router.get('/get-product/:slug', ProductController.getSingleProduct);
 
+router.get('/get-single-product/:id', ProductController.getSingleProductById);
+
 router.get('/product-photo/:id', ProductController.getProductPhoto);
 
 router.post('/create-product', isLogedin, isAdmin, upload.single('photo'), ProductController.createProduct);
