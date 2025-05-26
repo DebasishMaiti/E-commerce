@@ -5,6 +5,7 @@ const CategoryRoute = require("./CategoryRoute");
 const ProductRoute = require("./ProductRoute");
 const SubCategoryRoute = require("./SubCategoryRoute");
 const ShipingRoute = require("./ShipingRoute");
+const CartRoute = require("./CartRoute");
 
 router.use("/auth", AuthRoute);
 router.use("/category", CategoryRoute);
