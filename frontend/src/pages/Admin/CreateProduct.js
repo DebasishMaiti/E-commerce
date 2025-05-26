@@ -51,7 +51,7 @@ const CreateProduct = () => {
 
     const getAllCategory = async () => {
         try {
-            const response = await axios.get("https://e-commerce-two-lemon.vercel.app/api/category/get-category");
+            const response = await axios.get("https://e-commerce-9m1c.vercel.app/api/category/get-category");
             if (response) {
                 setCategories(response.data.category);
             }
@@ -68,7 +68,7 @@ const CreateProduct = () => {
     const GetSubCategory = async () => {
         if (!parentCategory) return;
         try {
-            const { data } = await axios.get(`https://e-commerce-two-lemon.vercel.app/api/subcategory/get-subcategory/${parentCategory}`);
+            const { data } = await axios.get(`https://e-commerce-9m1c.vercel.app/api/subcategory/get-subcategory/${parentCategory}`);
             if (data) {
                 setSubcategories(data.subcategories);
             }
@@ -95,7 +95,7 @@ const CreateProduct = () => {
             newFormData.append("shipping", formData.shipping);
             newFormData.append('photo', file);
 
-            const response = await axios.post('https://e-commerce-two-lemon.vercel.app/api/product/create-product', newFormData, {
+            const response = await axios.post('https://e-commerce-9m1c.vercel.app/api/product/create-product', newFormData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': auth.token

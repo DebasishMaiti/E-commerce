@@ -14,7 +14,7 @@ const ProductDetails = () => {
 
     const getProduct = async () => {
         try {
-            const response = await axios.get(`https://e-commerce-two-lemon.vercel.app/api/product/get-product/${params.slug}`);
+            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/get-product/${params.slug}`);
             setProduct(response.data.product);
             getSimilerProduct(response.data.product._id, response.data.product.category._id);
         } catch (error) {
@@ -24,7 +24,7 @@ const ProductDetails = () => {
 
     const getSimilerProduct = async (pid, cid) => {
         try {
-            const response = await axios.get(`https://e-commerce-two-lemon.vercel.app/api/product/similer-product/${pid}/${cid}`);
+            const response = await axios.get(`https://e-commerce-9m1c.vercel.app/api/product/similer-product/${pid}/${cid}`);
             setRelatedProduct(response.data.product);
         } catch (error) {
             console.log(error);
@@ -37,7 +37,7 @@ const ProductDetails = () => {
 
     const handleAddToCart = async (id) => {
         try {
-            const response = await axios.post(`https://e-commerce-two-lemon.vercel.app/api/cart/addtocart/${auth.user._id}`, { product: id });
+            const response = await axios.post(`https://e-commerce-9m1c.vercel.app/api/cart/addtocart/${auth.user._id}`, { product: id });
             response ? toast.success('Item Added to cart') : toast.error('Something went wrong');
         } catch (error) {
             console.log(error);
@@ -52,7 +52,7 @@ const ProductDetails = () => {
                         {product._id ? (
                             <img
                                 className="img-fluid rounded shadow product-main-img"
-                                src={`https://e-commerce-two-lemon.vercel.app/api/product/product-photo/${product._id}`}
+                                src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${product._id}`}
                                 alt={product.name}
                             />
                         ) : (
@@ -84,7 +84,7 @@ const ProductDetails = () => {
                                     <div className="card h-100 shadow-sm product-card">
                                         <img
                                             className="card-img-top"
-                                            src={`https://e-commerce-two-lemon.vercel.app/api/product/product-photo/${p._id}`}
+                                            src={`https://e-commerce-9m1c.vercel.app/api/product/product-photo/${p._id}`}
                                             alt={p.name}
                                         />
                                         <div className="card-body d-flex flex-column">
